@@ -1,6 +1,5 @@
 // api/buscar-jugador.js
 // Función serverless de Vercel — actúa como proxy para evitar CORS.
-// Se despliega automáticamente si este archivo vive en la carpeta /api de tu proyecto Vercel.
 
 export default async function handler(req, res) {
   const { uid } = req.query;
@@ -15,7 +14,6 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Servicio no configurado. Intenta más tarde.' });
   }
 
-  // Prueba varias regiones automáticamente, sin que el usuario tenga que elegir
   const REGIONS = ['br', 'ind', 'sg'];
 
   for (const region of REGIONS) {
@@ -29,7 +27,7 @@ export default async function handler(req, res) {
       if (!response.ok) {
         const errText = await response.text();
         console.error(`Región ${region} - respuesta no ok:`, response.status, errText);
-        continue; // prueba la siguiente región
+        continue;
       }
 
       const data = await response.json();
@@ -46,5 +44,5 @@ export default async function handler(req, res) {
     }
   }
 
-  // Ninguna región encontró la cuenta
   return res.status(404).json({ error: 'Cuenta no encontrada en ninguna región' });
+}
