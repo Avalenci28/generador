@@ -1,0 +1,373 @@
+/* Estilos basados en BuscadorUID.css, ajustados para el flujo de generación */
+
+.generador-card {
+  --bg: #0e1220;
+  --panel: #0e1220;
+  --panel-2: #131829;
+  --line: #232b45;
+  --cyan: #4fd8ff;
+  --cyan-glow: rgba(79, 216, 255, 0.55);
+  --gold: #ffd23f;
+  --ember: #ff6a3d;
+  --text: #f2f5fb;
+  --text-dim: #8992ac;
+  --ok: #3ee08a;
+  --err: #ff5470;
+
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 26px 22px 22px;
+  position: relative;
+  overflow: hidden;
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  box-shadow: 0 0 0 1px rgba(79, 216, 255, 0.06), 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+}
+
+/* Campo diamantes decorativos */
+.generador-card .diamond-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.generador-card .fd {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, var(--cyan), #1a6fa8);
+  transform: rotate(45deg);
+  border-radius: 3px;
+  filter: drop-shadow(0 0 6px var(--cyan-glow));
+  animation: gd-float 9s ease-in-out infinite;
+}
+
+@keyframes gd-float {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(45deg) translateY(-18px);
+  }
+}
+
+.generador-card .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.generador-card .header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.generador-card .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(10, 14, 28, 0.55);
+  border: 1px solid rgba(79, 216, 255, 0.18);
+  border-radius: 14px;
+}
+
+.generador-card .avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold), var(--ember));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 18px;
+  color: #1b0f00;
+  box-shadow: 0 0 18px rgba(255, 106, 61, 0.35);
+}
+
+.generador-card .chip-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.generador-card .chip-name {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.generador-card .chip-meta {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.generador-card .section {
+  margin-top: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.generador-card h1 {
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: -0.01em;
+  font-weight: 900;
+}
+
+.generador-card .sub {
+  color: var(--text-dim);
+  font-size: 13.5px;
+  margin: 10px 0 18px;
+  line-height: 1.55;
+}
+
+.generador-card .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.generador-card .amount-card {
+  text-align: left;
+  padding: 14px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(35, 43, 69, 0.95);
+  background: rgba(6, 8, 16, 0.45);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease, filter 0.12s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.generador-card .amount-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(circle at 20% 0%, rgba(79, 216, 255, 0.25), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.generador-card .amount-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(79, 216, 255, 0.35);
+  filter: brightness(1.05);
+}
+
+.generador-card .amount-card:hover::after {
+  opacity: 1;
+}
+
+.generador-card .amount-card.selected {
+  border-color: rgba(79, 216, 255, 0.75);
+  box-shadow: 0 0 0 3px rgba(79, 216, 255, 0.12);
+}
+
+.generador-card .amount-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.generador-card .amount {
+  font-weight: 1000;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+}
+
+.generador-card .bonus {
+  font-size: 11.5px;
+  font-weight: 900;
+  color: var(--gold);
+  background: rgba(255, 210, 63, 0.08);
+  border: 1px solid rgba(255, 210, 63, 0.22);
+  padding: 4px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.generador-card .amount-sub {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+}
+
+.generador-card button {
+  width: 100%;
+  margin-top: 14px;
+  background: linear-gradient(135deg, var(--cyan), #2b8fd6);
+  color: #06121c;
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform .12s ease, filter .12s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.generador-card button:hover {
+  filter: brightness(1.1);
+}
+
+.generador-card button:active {
+  transform: scale(.98);
+}
+
+.generador-card button:disabled {
+  opacity: .55;
+  cursor: default;
+}
+
+.generador-card .secondary-btn {
+  background: rgba(79, 216, 255, 0.09);
+  border: 1px solid rgba(79, 216, 255, 0.28);
+  color: var(--cyan);
+  margin-top: 10px;
+}
+
+.generador-card .secondary-btn:hover {
+  filter: brightness(1.08);
+}
+
+.generador-card .gold-btn {
+  background: linear-gradient(135deg, var(--gold), var(--ember));
+  color: #1b0f00;
+  margin-top: 14px;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.generador-card .error {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--err);
+  background: rgba(255, 84, 112, 0.08);
+  border: 1px solid rgba(255, 84, 112, 0.28);
+  padding: 11px 13px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  animation: reveal .35s ease;
+}
+
+.generador-card .progress-wrap {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(35, 43, 69, 0.95);
+  position: relative;
+  z-index: 1;
+}
+
+.generador-card .bar {
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(35, 43, 69, 0.65);
+  border: 1px solid rgba(79, 216, 255, 0.22);
+  overflow: hidden;
+}
+
+.generador-card .bar > span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(79,216,255,0.95), rgba(43,143,214,0.95));
+  box-shadow: 0 0 22px rgba(79, 216, 255, 0.35);
+  border-radius: 999px;
+  transition: width 0.12s ease;
+}
+
+.generador-card .progress-text {
+  margin-top: 10px;
+  color: var(--text-dim);
+  font-size: 13.5px;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.generador-card .result-box {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(35, 43, 69, 0.95);
+  position: relative;
+  z-index: 1;
+  animation: reveal .35s ease;
+}
+
+.generador-celebration {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto;
+  border-radius: 18px;
+  background: radial-gradient(circle at 30% 20%, rgba(255,210,63,0.35), transparent 55%),
+    linear-gradient(135deg, rgba(255,210,63,0.9), rgba(255,106,61,0.85));
+  box-shadow: 0 0 28px rgba(255, 106, 61, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1b0f00;
+  font-size: 28px;
+  font-weight: 1000;
+}
+
+.generador-card .result-title {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+.generador-card .result-amount {
+  margin-top: 10px;
+  font-size: 28px;
+  font-weight: 1100;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--gold), var(--ember));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.generador-card .hint {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+  font-weight: 800;
+}
+
